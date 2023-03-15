@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
+
 
 export const CadastroCategoria = () => {
 
     const [categoriaData, setCategoriaData] = useState({
         nome: ""
     });
+
+    const [cookies, setCookies] = useCookies(["access_token"]);
 
     function handleChange(event) {
         const {name, value} = event.target;
@@ -17,18 +21,20 @@ export const CadastroCategoria = () => {
         event.preventDefault();
         try{
 
-            let url = 'http://localhost:3001/criarCategoria/';
+            let url = 'http://localhost:3001/categorias/create';
             
-            const response = await axios.post(url, {
-                nome: categoriaData.nome
+            const response = await axios.post(url,  categoriaData, {
+                headers: {
+                    authorization: cookies.access_token
+                }
             });
             
+            console.log(response.data);
         }
         catch(err){
             console.log(err);
         }
     }
-
 
     return (
         <div>

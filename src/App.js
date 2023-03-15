@@ -6,7 +6,7 @@ import { CadastroCategoria } from './pages/CadastroCategoria/CadastroCategoria';
 import { CadastroEmpresa } from './pages/CadastroEmpresa/CadastroEmpresa';
 
 import CadastroAdmin from './pages/CadastroAdmin/CadastroAdmin';
-import CadastroUser from './pages/CadastroUser/CadastroUser';
+import CadastroCliente from './pages/CadastroCliente/CadastroCliente';
 
 import { Home } from './pages/Home/Home';
 import { Venda } from './pages/Venda/Venda';
@@ -23,7 +23,7 @@ function App() {
         <Route path="/cadastroCategoria" element={<CadastroCategoria/>}/>
         <Route path="/cadastroProduto" element={<CadastroProduto/>}/>
         <Route path="/cadastroEmpresa" element={<CadastroEmpresa/>}/>
-        <Route path="/cadastroUser" element={<CadastroUser/>}/>
+        <Route path="/cadastroCliente" element={<CadastroCliente/>}/>
         <Route path="/" element={<Home/>}/>
         <Route path="/venda" element={<Venda/>}/>
       </Routes>

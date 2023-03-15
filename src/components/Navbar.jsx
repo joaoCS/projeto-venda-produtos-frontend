@@ -23,7 +23,7 @@ const Navbar = () => {
             <Link to="/cadastroCategoria">Criar Categoria</Link>&nbsp;
             <Link to="/cadastroProduto">Cadastrar Produto</Link>&nbsp;
             <Link to="/cadastroEmpresa">Cadastrar Empresa</Link>&nbsp;
-            <Link to="/cadastroUser">Cadastrar Cliente</Link>&nbsp;
+            <Link to="/cadastroCliente">Cadastrar Cliente</Link>&nbsp;
             <Link to="/venda">Venda</Link>&nbsp;
             
             {!cookies.access_token? <Link to="/login">Login</Link> :

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 export const CadastroEmpresa = () => {
 
@@ -10,6 +11,8 @@ export const CadastroEmpresa = () => {
         telefone: ""
     });
 
+    const [cookies, setCookies] = useCookies(["access_token"]);
+
     function handleChange(event) {
         const {name, value} = event.target;
 
@@ -18,17 +21,19 @@ export const CadastroEmpresa = () => {
 
     async function submit(event){
         event.preventDefault();
+        console.log(companyData);
         try{
 
-            let url = 'http://localhost:3001/cadastrarEmpresa/';
+            let url = 'http://localhost:3001/empresas/cadastrar';
             
             const response = await axios.post(url, {
                     razaoSocial: companyData.razaoSocial,
                     cnpj: companyData.cnpj,
                     endereco: companyData.endereco,
                     telefone: companyData.telefone
-            });
+            }, { headers: { authorization: cookies.access_token } });
             
+            alert(response.data.message);
         }
         catch(err){
             console.log(err);
@@ -41,8 +46,8 @@ export const CadastroEmpresa = () => {
             <h2>Cadastrar Empresa</h2>
             <form action="" method='post' onSubmit={submit}>
                <div>
-                    <label htmlFor="razao">Razão Social:</label>
-                    <input type="text" id="razao" name="razao" onChange={handleChange}/>
+                    <label htmlFor="razaoSocial">Razão Social:</label>
+                    <input type="text" id="razaoSocial" name="razaoSocial" onChange={handleChange}/>
                </div> 
                 <div>
                     <label htmlFor="cnpj">CNPJ:</label>
