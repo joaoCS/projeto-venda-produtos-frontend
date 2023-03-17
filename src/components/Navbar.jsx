@@ -19,15 +19,17 @@ const Navbar = () => {
     return(
         <div className="navbar">
             <Link to="/">Home</Link>&nbsp;
-            <Link to="/cadastroAdmin">Cadastrar administrador</Link>&nbsp;
-            <Link to="/cadastroCategoria">Criar Categoria</Link>&nbsp;
-            <Link to="/cadastroProduto">Cadastrar Produto</Link>&nbsp;
-            <Link to="/cadastroEmpresa">Cadastrar Empresa</Link>&nbsp;
-            <Link to="/cadastroCliente">Cadastrar Cliente</Link>&nbsp;
-            <Link to="/venda">Venda</Link>&nbsp;
             
             {!cookies.access_token? <Link to="/login">Login</Link> :
-                <a href="" onClick={logout}>Logout</a>
+                <div>
+                    <Link to="/cadastroAdmin">Cadastrar administrador</Link>&nbsp;
+                    <Link to="/cadastroCategoria">Criar Categoria</Link>&nbsp;
+                    <Link to="/cadastroProduto">Cadastrar Produto</Link>&nbsp;
+                    <Link to="/cadastroEmpresa">Cadastrar Empresa</Link>&nbsp;
+                    <Link to="/cadastroCliente">Cadastrar Cliente</Link>&nbsp;
+                    <Link to="/venda">Venda</Link>&nbsp;
+                    <a href="" onClick={logout}>Logout</a>
+                </div>
             }
         </div>
     );
