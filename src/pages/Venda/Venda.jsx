@@ -60,7 +60,6 @@ export const Venda = () => {
 
         atualizaTotalPagar();
       
-        console.log(vendas);
 
     }
     
@@ -99,7 +98,6 @@ export const Venda = () => {
         const index = event.target.value;
 
         vendaData.cliente = clientes[index];
-        vendaData.venda = [...venda];
 
 
         console.log(vendaData);
@@ -117,6 +115,31 @@ export const Venda = () => {
         console.log(venda[index]);
 
         atualizaTotalPagar();
+    }
+
+    async function confirmaVenda () {
+        
+        if(venda.length === 0) {
+            alert("Selecione produtos!");
+            return;
+        }
+        vendaData.venda = [...venda];
+
+        if(Object.keys(vendaData.cliente).length === 0) {
+            alert("Selecione um cliente!");
+            return;
+        }
+
+        try {
+        
+            const response = await axios.post('http://localhost:3001/vendas/efetuarVenda', vendaData, {
+                headers: { authorization: cookies.access_token}});
+
+            alert(response.data.message);
+            
+        } catch (err) {
+            alert("Erro ao efetuar venda!", err);
+        }
     }
 
     useEffect(()=>{
@@ -162,10 +185,12 @@ export const Venda = () => {
                             </div>);
                 })}
             </div>
+            <div>
                 <hr />
                 <h2>Cliente</h2>
                 <form action="" method="post">
                     <select name="cliente" id="" onChange={selecionaCliente}>
+                    <option id="nulo" key={-1} value={null}>Selecionar cliente</option>
                         {clientes.map((cliente, idx) => {
                             return (
                                 <option id={cliente._id} key={idx} value={idx}>{cliente.nome}</option>
@@ -175,6 +200,9 @@ export const Venda = () => {
                 </form>
                 <h2>Total a pagar: </h2>
                 <span>{vendaData.totalPagar}</span>
+            </div>
+
+            <button onClick={confirmaVenda}>Confirmar venda</button>
         </div>
     );
 }
