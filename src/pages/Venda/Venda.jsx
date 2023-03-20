@@ -24,6 +24,7 @@ export const Venda = () => {
         }
         catch(err) {
             console.log(err);
+            alert(err);
         }
     }
 

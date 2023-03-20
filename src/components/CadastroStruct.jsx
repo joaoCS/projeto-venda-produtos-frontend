@@ -53,6 +53,11 @@ export const CadastroStruct = (props) => {
                     password: userData.password
                 });
                 console.log(response.data);
+                if(response.status === 403) {
+                    alert("Usuário já existe!");
+                    return;
+                }
+                
                 alert("Administrador criado com sucesso! Faça login!");
                 navigate("/");
             }

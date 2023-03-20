@@ -10,7 +10,7 @@ import CadastroCliente from './pages/CadastroCliente/CadastroCliente';
 
 import { Home } from './pages/Home/Home';
 import { Venda } from './pages/Venda/Venda';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import { CadastroProduto } from './pages/CadastroProduto/CadastroProduto';
 
 function App() {
