@@ -74,7 +74,6 @@ const Navbar = () => {
                         <div className="popup" onMouseLeave={closeAllPopups}>
                              <Link to="/cadastroAdmin">Administradores</Link>
                              <Link to="/cadastroAdmin">Cadastrar Administrador</Link>
-
                         </div>}
                     </div>&nbsp;
                 </div>
@@ -85,7 +84,7 @@ const Navbar = () => {
                          Produtos
                         {produtosPopup && 
                         <div className="popup" onMouseLeave={closeAllPopups}>
-                            <Link to="/cadastroProduto">Produtos</Link>
+                            <Link to="/produtos">Produtos</Link>
                             <Link to="/cadastroProduto">Cadastrar Produto</Link>
 
                         </div>}

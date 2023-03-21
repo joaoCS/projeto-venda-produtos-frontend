@@ -1,0 +1,44 @@
+.editModal {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    background-color: rgba(0, 0, 0, 0.384);
+}
+
+.editModal div{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    margin: auto;
+    background-color: white;
+    width: 500px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.editModal div h3 {
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.editModal div form {
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.editModal div form  span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
