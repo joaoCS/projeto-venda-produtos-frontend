@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { AiFillEdit, AiOutlineDelete } from 'react-icons/ai';
-import EditarProdutoModal from '../../components/Modal/EditarProdutoModal';
-import DeleteProdutoModal from '../../components/Modal/DeleteProdutoModal';
+import EditarProdutoModal from '../../components/Modal/EditarProdutoModal/EditarProdutoModal';
+import DeleteProdutoModal from '../../components/Modal/DeleteProdutoModal/DeleteProdutoModal';
 
 export default function Produtos() {
 
