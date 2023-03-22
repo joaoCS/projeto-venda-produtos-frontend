@@ -12,7 +12,7 @@ const Navbar = () => {
     const [produtosPopup, setProdutosPopup] = useState(false);
     const [clientesPopup, setClientesPopup] = useState(false);
     const [adminPopup, setAdminPopup] = useState(false);
-
+    const [empresasPopup, setEmpresasPopup] = useState(false);
 
     const navigate = useNavigate();
     let username = "";
@@ -41,6 +41,12 @@ const Navbar = () => {
         navigate("/login");
     }
 
+    function toggleEmpresasPopupMenu() {
+        setEmpresasPopup(!empresasPopup);
+        setAdminPopup(false);
+        setClientesPopup(false);
+        setProdutosPopup(false);
+    }
     function toggleAdminPopupMenu() {
         setAdminPopup(!adminPopup);
         setClientesPopup(false);
@@ -61,6 +67,7 @@ const Navbar = () => {
 
     function closeAllPopups() {
         setAdminPopup(false);
+        setEmpresasPopup(false);
         setClientesPopup(false);
         setProdutosPopup(false);
     }
@@ -89,11 +96,20 @@ const Navbar = () => {
 
                         </div>}
                     </div>&nbsp;
+                    <div className="menu"   onMouseEnter={toggleEmpresasPopupMenu}>
+                         Empresas
+                        {empresasPopup && 
+                        <div className="popup" onMouseLeave={closeAllPopups}>
+                            <Link to="/cadastroEmpresa">Empresas</Link>
+                            <Link to="/cadastroEmpresa">Cadastrar Empresa</Link>
+
+                        </div>}
+                    </div>&nbsp;
                     <div className="menu"   onMouseEnter={toggleClientesPopupMenu}>
                          Clientes
                         {clientesPopup && 
                         <div className="popup" onMouseLeave={closeAllPopups}>
-                             <Link to="/cadastroCliente">Clientes</Link>
+                             <Link to="/clientes">Clientes</Link>
                              <Link to="/cadastroCliente">Cadastrar Cliente</Link>
 
                         </div>}

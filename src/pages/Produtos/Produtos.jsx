@@ -42,7 +42,6 @@ export default function Produtos() {
 
     function openEditarModal () {
         setIsOpenEditarModal(true);
-        console.log(modalProduto);
     }
     
     function closeEditarModal () {
@@ -52,7 +51,6 @@ export default function Produtos() {
     
     function openDeleteModal () {
         setIsOpenDeleteModal(true);
-        console.log(modalProduto);
     }
     
     function closeDeleteModal () {

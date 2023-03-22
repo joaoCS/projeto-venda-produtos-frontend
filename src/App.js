@@ -13,6 +13,7 @@ import { Venda } from './pages/Venda/Venda';
 import Navbar from './components/Navbar/Navbar';
 import { CadastroProduto } from './pages/CadastroProduto/CadastroProduto';
 import Produtos from './pages/Produtos/Produtos';
+import Clientes from './pages/Clientes/Clientes';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/venda" element={<Venda/>}/>
         <Route path="/produtos" element={<Produtos/>}/>
+        <Route path="/clientes" element={<Clientes/>}/>
       </Routes>
     </BrowserRouter>
   );
