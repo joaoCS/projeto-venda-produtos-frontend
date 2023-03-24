@@ -16,8 +16,8 @@
     bottom: 0;
 
     background-color: white;
-    width: 400px;
-    height: 400px;
+    width: fit-content;
+    height: fit-content;
 
     margin: auto;
 
@@ -25,6 +25,7 @@
     flex-direction: column;
 
     box-shadow: 1px 1px 12px 1px black;
+    padding: 40px;
 }
 
 .editar div h2 {

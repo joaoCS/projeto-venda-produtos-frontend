@@ -15,7 +15,6 @@ export default function Clientes() {
         try {
             const response = await axios.get('http://localhost:3001/clientes');
 
-            console.log(response.data);
             setClientes(response.data);
         } 
         catch (err) {

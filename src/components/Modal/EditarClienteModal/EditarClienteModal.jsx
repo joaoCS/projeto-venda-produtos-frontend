@@ -41,7 +41,7 @@ export default function EditarClienteModal({ cliente, closeModal }) {
 
     return (
         <div className="editar">
-            <div>
+            <div> 
                 <h2>Editar Cliente</h2>
                 <form action="" onSubmit={handleSubmit}>
                     <label htmlFor="nome">Nome:</label>

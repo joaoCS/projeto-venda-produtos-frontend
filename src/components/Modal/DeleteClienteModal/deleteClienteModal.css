@@ -19,11 +19,18 @@
 
     margin: auto;
 
-    width: 350px;
-    height: 120px;
+    width: fit-content  ;
+    height: fit-content;
     display: flex;
     flex-direction: column;
+
+    box-shadow: 1px 1px 12px 1px black;
 } 
+
+.delete div h4 {
+    padding-left: 30px;
+    padding-right: 30px;
+}
 
 .delete div span {
     display: flex;

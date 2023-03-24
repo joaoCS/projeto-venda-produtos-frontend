@@ -26,7 +26,7 @@ export default function DeleteClienteModal({ cliente, closeModal }) {
          console.log(err);
       }
    }
-
+ 
    return (
       <div className="delete">
          <div>
@@ -36,6 +36,6 @@ export default function DeleteClienteModal({ cliente, closeModal }) {
                <button onClick={closeModal}>Não</button>
             </span>
          </div>
-      </div>
+      </div> 
    );
 };
