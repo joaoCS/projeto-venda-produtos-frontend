@@ -15,6 +15,8 @@ import { CadastroProduto } from './pages/CadastroProduto/CadastroProduto';
 import Produtos from './pages/Produtos/Produtos';
 import Clientes from './pages/Clientes/Clientes';
 import Categoria from './pages/Categoria/Categoria';
+import Empresas from './pages/Empresas/Empresas';
+import Admin from './pages/Admin/Admin';
 
 function App() {
   return (
@@ -32,6 +34,9 @@ function App() {
         <Route path="/produtos" element={<Produtos/>}/>
         <Route path="/clientes" element={<Clientes/>}/>
         <Route path="/categorias" element={<Categoria/>}/>
+        <Route path="/empresas" element={<Empresas/>}/>
+        <Route path="/administrador" element={<Admin/>}/>
+
       </Routes>
     </BrowserRouter>
   );

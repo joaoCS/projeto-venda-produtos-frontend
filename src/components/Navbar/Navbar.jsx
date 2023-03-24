@@ -14,28 +14,35 @@ const Navbar = () => {
     const [adminPopup, setAdminPopup] = useState(false);
     const [empresasPopup, setEmpresasPopup] = useState(false);
     const [categoriasPopup, setCategoriasPopup] = useState(false);
-
+    const [username, setUsername] = useState("");
 
     const navigate = useNavigate();
-    let username = "";
-    
 
     useEffect(()=>{
-        async function fetchData(){
-            const response = await axios.get('http://localhost:3001/auth/username', {
-            userId: window.localStorage.getItem("userId")
-            }, 
-            {
-                headers: {
-                    authorization: cookies.access_token
-                }
-            });
+        async function fetchData() {
 
-            username = response.data.username;
+
+            try {
+    
+                console.log(cookies.access_token);
+                const response = await axios.get('http://localhost:3001/auth/username', {
+                        headers: {
+                            authorization: cookies.access_token,
+                            userId: window.localStorage.getItem("userId")
+                        },
+                    });
+    
+                setUsername(response.data.username);
+                console.log(response.data);
+            }
+            catch (err) {
+                console.log(err);
+            }
         }
-
+    
         fetchData();
-    }, [cookies.access_token]);
+    }, []);
+
 
     function logout() {
         setCookies("access_token", "");
@@ -59,7 +66,7 @@ const Navbar = () => {
         setEmpresasPopup(false);
 
     }
-    
+
     function toggleProdutosPopupMenu() {
         setAdminPopup(false);
         setClientesPopup(false);
@@ -77,7 +84,7 @@ const Navbar = () => {
         setEmpresasPopup(false);
 
     }
-    
+
     function toggleClientesPopupMenu() {
         setAdminPopup(false);
         setClientesPopup(!clientesPopup);
@@ -94,63 +101,63 @@ const Navbar = () => {
         setEmpresasPopup(false);
         setCategoriasPopup(false);
     }
-    return(
+    return (
         <div className="navbar">
-                <div className="commonLinks">
-                    <Link to="/">Home</Link>&nbsp;
-                     <div className="menu"   onMouseEnter={toggleAdminPopupMenu}>
-                         Administradores
-                        {adminPopup && 
+            <div className="commonLinks">
+                <Link to="/">Home</Link>&nbsp;
+                <div className="menu" onMouseEnter={toggleAdminPopupMenu}>
+                    Administrador (<span>{username}</span>)
+                    {adminPopup &&
                         <div className="popup" onMouseLeave={closeAllPopups}>
-                             <Link to="/cadastroAdmin">Administradores</Link>
-                             <Link to="/cadastroAdmin">Cadastrar Administrador</Link>
+                            <Link to="/administrador">Editar dados do administrador</Link>
+                            <Link to="/cadastroAdmin">Cadastrar Administrador</Link>
                         </div>}
-                    </div>&nbsp;
-                </div>
-            {!cookies.access_token? <Link to="/login">Login</Link> :
+                </div>&nbsp;
+            </div>
+            {!cookies.access_token ? <Link to="/login">Login</Link> :
                 <div className="authLinks">
-                    <div className="menu"   onMouseEnter={toggleCategoriasPopupMenu}>
-                         Categorias
-                        {categoriasPopup && 
-                        <div className="popup" onMouseLeave={closeAllPopups}>
-                            <Link to="/categorias">Categorias</Link>
-                            <Link to="/cadastroCategoria">Criar Categoria</Link>
+                    <div className="menu" onMouseEnter={toggleCategoriasPopupMenu}>
+                        Categorias
+                        {categoriasPopup &&
+                            <div className="popup" onMouseLeave={closeAllPopups}>
+                                <Link to="/categorias">Categorias</Link>
+                                <Link to="/cadastroCategoria">Criar Categoria</Link>
 
-                        </div>}
+                            </div>}
                     </div>&nbsp;
-                    <div className="menu"   onMouseEnter={toggleProdutosPopupMenu}>
-                         Produtos
-                        {produtosPopup && 
-                        <div className="popup" onMouseLeave={closeAllPopups}>
-                            <Link to="/produtos">Produtos</Link>
-                            <Link to="/cadastroProduto">Cadastrar Produto</Link>
+                    <div className="menu" onMouseEnter={toggleProdutosPopupMenu}>
+                        Produtos
+                        {produtosPopup &&
+                            <div className="popup" onMouseLeave={closeAllPopups}>
+                                <Link to="/produtos">Produtos</Link>
+                                <Link to="/cadastroProduto">Cadastrar Produto</Link>
 
-                        </div>}
+                            </div>}
                     </div>&nbsp;
-                    <div className="menu"   onMouseEnter={toggleEmpresasPopupMenu}>
-                         Empresas
-                        {empresasPopup && 
-                        <div className="popup" onMouseLeave={closeAllPopups}>
-                            <Link to="/cadastroEmpresa">Empresas</Link>
-                            <Link to="/cadastroEmpresa">Cadastrar Empresa</Link>
+                    <div className="menu" onMouseEnter={toggleEmpresasPopupMenu}>
+                        Empresas
+                        {empresasPopup &&
+                            <div className="popup" onMouseLeave={closeAllPopups}>
+                                <Link to="/empresas">Empresas</Link>
+                                <Link to="/cadastroEmpresa">Cadastrar Empresa</Link>
 
-                        </div>}
+                            </div>}
                     </div>&nbsp;
-                    <div className="menu"   onMouseEnter={toggleClientesPopupMenu}>
-                         Clientes
-                        {clientesPopup && 
-                        <div className="popup" onMouseLeave={closeAllPopups}>
-                             <Link to="/clientes">Clientes</Link>
-                             <Link to="/cadastroCliente">Cadastrar Cliente</Link>
+                    <div className="menu" onMouseEnter={toggleClientesPopupMenu}>
+                        Clientes
+                        {clientesPopup &&
+                            <div className="popup" onMouseLeave={closeAllPopups}>
+                                <Link to="/clientes">Clientes</Link>
+                                <Link to="/cadastroCliente">Cadastrar Cliente</Link>
 
-                        </div>}
+                            </div>}
                     </div>&nbsp;
-                   
-                  
-                   
+
+
+
                     <Link to="/venda">Venda</Link>&nbsp;
+
                     
-                    <span>{username}</span>
                     <a href="" onClick={logout}>Logout</a>
                 </div>
             }

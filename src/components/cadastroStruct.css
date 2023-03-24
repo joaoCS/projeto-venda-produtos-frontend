@@ -1,0 +1,15 @@
+.cadastroStruct {
+    width: fit-content;
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.cadastroStruct form {
+    display: flex;
+    flex-direction: column;
+}
+
+.cadastroStruct form span {
+    padding-top: 20px;
+}
