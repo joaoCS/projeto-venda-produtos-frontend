@@ -106,7 +106,7 @@ const Navbar = () => {
             <div className="commonLinks">
                 <Link to="/">Home</Link>&nbsp;
                 <div className="menu" onMouseEnter={toggleAdminPopupMenu}>
-                    Administrador (<span>{username}</span>)
+                    Administrador <span>{username}</span>
                     {adminPopup &&
                         <div className="popup" onMouseLeave={closeAllPopups}>
                             <Link to="/administrador">Editar dados do administrador</Link>
