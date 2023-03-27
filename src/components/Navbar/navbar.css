@@ -8,10 +8,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+    align-items: end;
     background-color: rgb(  152, 152, 152);
 
     padding: 10px;
+
 }
 
 .authLinks {
@@ -22,6 +23,10 @@
 .commonLinks {
     display: flex;
     flex-direction: row;
+}
+
+#logo{
+    margin: 0;
 }
 
 .navbar .authLinks .menu .popup {

@@ -103,6 +103,7 @@ const Navbar = () => {
     }
     return (
         <div className="navbar">
+            
             <div className="commonLinks">
                 <Link to="/">Home</Link>&nbsp;
                 <div className="menu" onMouseEnter={toggleAdminPopupMenu}>
@@ -114,6 +115,8 @@ const Navbar = () => {
                         </div>}
                 </div>&nbsp;
             </div>
+            <h1 id="logo">Vendas</h1>
+            
             {!cookies.access_token ? <Link to="/login">Login</Link> :
                 <div className="authLinks">
                     <div className="menu" onMouseEnter={toggleCategoriasPopupMenu}>
