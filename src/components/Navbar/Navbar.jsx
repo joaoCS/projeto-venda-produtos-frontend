@@ -21,10 +21,8 @@ const Navbar = () => {
     useEffect(()=>{
         async function fetchData() {
 
-
             try {
     
-                console.log(cookies.access_token);
                 const response = await axios.get('http://localhost:3001/auth/username', {
                         headers: {
                             authorization: cookies.access_token,
@@ -33,7 +31,6 @@ const Navbar = () => {
                     });
     
                 setUsername(response.data.username);
-                console.log(response.data);
             }
             catch (err) {
                 console.log(err);
@@ -91,7 +88,6 @@ const Navbar = () => {
         setProdutosPopup(false);
         setCategoriasPopup(false);
         setEmpresasPopup(false);
-
     }
 
     function closeAllPopups() {
@@ -137,7 +133,7 @@ const Navbar = () => {
 
                             </div>}
                     </div>&nbsp;
-                    <div className="menu" onMouseEnter={toggleEmpresasPopupMenu}>
+                    {/* <div className="menu" onMouseEnter={toggleEmpresasPopupMenu}>
                         Empresas
                         {empresasPopup &&
                             <div className="popup" onMouseLeave={closeAllPopups}>
@@ -145,7 +141,7 @@ const Navbar = () => {
                                 <Link to="/cadastroEmpresa">Cadastrar Empresa</Link>
 
                             </div>}
-                    </div>&nbsp;
+                    </div>&nbsp; */}
                     <div className="menu" onMouseEnter={toggleClientesPopupMenu}>
                         Clientes
                         {clientesPopup &&

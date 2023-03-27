@@ -85,3 +85,33 @@
   
   padding: 20px 0px;
 }
+
+.content {
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 50px;
+}
+
+.content h3 {
+  background-color: rgb(167, 165, 165)  ;;
+  padding: 5px 5px 5px 5px;
+}
+
+.content ul {
+  list-style: none;
+  min-width: max-content;
+
+  border: 1px solid grey;
+  padding-left: 0;
+
+}
+
+.content ul li:nth-child(even) {
+  padding: 10px;
+  background-color: rgb(167, 165, 165)  ;
+}
+
+.content ul li:nth-child(odd){
+  padding: 10px;
+}

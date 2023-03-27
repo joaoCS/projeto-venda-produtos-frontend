@@ -35,7 +35,7 @@ export const CadastroCategoria = () => {
             navigate("/categorias");
         }
         catch (err) {
-            alert("Erro ao criar categoria!");
+            alert(err.response.data.message);
         }
     }
 

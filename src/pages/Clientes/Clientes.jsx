@@ -45,16 +45,25 @@ export default function Clientes() {
     }
 
     return (
-        <div>
-            Clientes
+        <div className='content'>
+            <h3>Clientes</h3>
 
             <ul>
                 {clientes.map((cliente, idx) => {
                     return (<li key={idx}>
-                                <strong>Nome: &nbsp;</strong>{cliente.nome}&nbsp;
-                                <strong>CPF: &nbsp;</strong>{cliente.cpf}&nbsp;
-                                <strong>Endereço: &nbsp;</strong>{cliente.endereco}&nbsp;
-                                <strong>Telefone: &nbsp;</strong>{cliente.telefone}&nbsp;
+                                <span>
+                                    <strong>Nome: </strong>{cliente.nome}&nbsp;
+                                </span>
+                                <span>
+                                    <strong>CPF: </strong>{cliente.cpf}&nbsp;
+                                </span>
+                                <span>
+                                    <strong>Endereço: </strong>{cliente.endereco}&nbsp;
+                                </span>
+                                <span>
+                                    <strong>Telefone: </strong>{cliente.telefone}&nbsp;
+                                </span>
+                                
                                 <button onClick={(e)=>{ openEditarModal(); setModalCliente(cliente) }}>Editar <AiFillEdit/> </button>&nbsp;
                                 <button onClick={(e) => { openDeleteModal(); setModalCliente(cliente) }}>Deletar  <AiOutlineDelete/> </button>
                             </li>);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 export const CadastroProduto = () => {
 
@@ -14,6 +15,22 @@ export const CadastroProduto = () => {
         valorVenda: 0.0,
         categoria: ""
     });
+
+    const navigate = useNavigate();
+
+
+    async function fetchCategorias() {
+        try {
+            const response = await axios.get('http://localhost:3001/categorias/');
+
+            setCategorias(response.data);
+
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -30,31 +47,37 @@ export const CadastroProduto = () => {
 
         try {
 
-            console.log(productData);
-
             let url = 'http://localhost:3001/produtos/create';
 
             const response = await axios.post(url, productData, { headers: { authorization: cookies.access_token } });
+            alert(response.data.message);
+
+            if(window.confirm("Cadastrar novo produto?")) {
+                setProductData({
+                    nome: "",
+                    valorCompra: 0.0,
+                    valorVenda: 0.0,
+                    categoria: ""
+                });
+
+                setCategorias([]);
+
+                fetchCategorias();
+                document.getElementById("cadastroForm").reset();
+            }
+            else
+                navigate("/produtos");
+               
         }
         catch (err) {
-            console.log(err);
+            alert(err.response.data.message);
+
         }
     }
 
     useEffect(() => {
 
-        async function fetchCategorias() {
-            try {
-                const response = await axios.get('http://localhost:3001/categorias/');
-
-                setCategorias(response.data);
-
-            }
-            catch (err) {
-                console.log(err);
-            }
-        }
-
+        
         fetchCategorias();
 
     }, []);
@@ -62,7 +85,7 @@ export const CadastroProduto = () => {
     return (
         <div className='cadastro'>
             <h2>Cadastrar Produto</h2>
-            <form action="" method='post' onSubmit={submit}>
+            <form action="" method='post' onSubmit={submit} id="cadastroForm">
 
                 <label htmlFor="nome">Nome:</label>
                 <input type="text" id="nome" name="nome" onChange={handleChange} />

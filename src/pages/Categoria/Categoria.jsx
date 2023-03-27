@@ -12,64 +12,67 @@ export default function Categoria() {
     const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
     const [cookies, setCookies] = useCookies(["access_token"]);
 
-    async function buscaCategorias(){
-       try {
-            const response =  await axios.get('http://localhost:3001/categorias');
-            
+    async function buscaCategorias() {
+        try {
+            const response = await axios.get('http://localhost:3001/categorias');
+
             setCategorias(response.data);
- 
-       } 
-       catch (err) {
+
+        }
+        catch (err) {
             alert("Erro ao buscar categorias!");
-       }
+        }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
 
         buscaCategorias();
     }, []);
 
-    function openEditarModal () {
+    function openEditarModal() {
         setIsOpenEditarModal(true);
     }
-    
-    function closeEditarModal () {
+
+    function closeEditarModal() {
         setIsOpenEditarModal(false);
         buscaCategorias();
     }
-    
-    function openDeleteModal () {
+
+    function openDeleteModal() {
         setIsOpenDeleteModal(true);
     }
-    
-    function closeDeleteModal () {
+
+    function closeDeleteModal() {
         setIsOpenDeleteModal(false);
         buscaCategorias();
     }
-    
+
     return (
-        <div className='categorias'>
+        <div className='content'>
+            <h3>Categorias de Produtos</h3>
             <ul>
                 {categorias.map((categoria, idx) => {
                     return (
                         <li key={idx}>
-                            <strong>Nome: </strong>{categoria.nome}
+                            <span>
+                                <strong>Nome: </strong>{categoria.nome}
+                            </span>
                             &nbsp;
-                            <button onClick={(e)=>{ openEditarModal(); setModalCategoria(categoria) }}>Editar <AiFillEdit/></button>
+                            <button onClick={(e) => { openEditarModal(); setModalCategoria(categoria) }}>Editar <AiFillEdit /></button>
                             &nbsp;
-                            <button onClick={(e) => { openDeleteModal(); setModalCategoria(categoria) }}>Deletar <AiOutlineDelete/></button>
+                            <button onClick={(e) => { openDeleteModal(); setModalCategoria(categoria) }}>Deletar <AiOutlineDelete /></button>
                         </li>
                     );
                 })}
             </ul>
 
-            {isOpenEditarModal && <EditarCategoriaModal 
-                            categoria={modalCategoria}
-                            closeModal={closeEditarModal}/>}
-           
-           {isOpenDeleteModal && <DeleteCategoriaModal 
-                            categoria={modalCategoria}
-                            closeModal={closeDeleteModal}/>}
+            {isOpenEditarModal && <EditarCategoriaModal
+                categoria={modalCategoria}
+                closeModal={closeEditarModal} />}
+
+            {isOpenDeleteModal && <DeleteCategoriaModal
+                categoria={modalCategoria}
+                closeModal={closeDeleteModal} />}
 
 
         </div>

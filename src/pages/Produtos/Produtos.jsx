@@ -58,14 +58,23 @@ export default function Produtos() {
         buscaProdutos();
     }
     return (
-        <div>
+        <div className='content'>
+            <h3>Produtos</h3>
             <ul>
                 {produtos.map((produto, idx)=>{
                     return (
                         <li key={produto._id}>
-                            <span>Nome: </span> <strong>{produto.nome}</strong>
-                            <span>Preço: </span> <strong>{produto.valorVenda}</strong>
-                            <span>Categoria: </span> <strong>{produto.categoria.nome}</strong>
+                            <span>
+                                <strong>Nome: </strong>{produto.nome}
+                            </span>
+                            &nbsp;
+                            <span> 
+                                <strong>Preço: </strong> R$ {produto.valorVenda}
+                            </span> 
+                            &nbsp;
+                            <span>
+                               <strong> Categoria: </strong>{produto.categoria.nome}
+                            </span>
                             &nbsp;
                             <button onClick={(e)=>{ openEditarModal(); setModalProduto(produto) }}>Editar <AiFillEdit/></button>
                             &nbsp;
