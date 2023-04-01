@@ -14,14 +14,17 @@ export default function CadastroCliente() {
 
     const [cookies, setCookies] = useCookies(["access_token"]);
     const navigate = useNavigate();
-
+    const validaTelefone = /^(\d{2})\s*(\d)?\s*(\d{4})\-?(\d{4})$/;
+    const validaCpf = /^(\d{3})(\d{3})(\d{3})(\d{2})$/; 
 
     function removeChars(valor) {
         valor = valor.replace(/[a-zA-Z\u\'\"\`]/g, "");// substitui tudo o que não for número
         valor = valor.replace(/\s+/g, "");
-        valor = valor.replace(/\-+/, "");
-        valor = valor.replace(/\(+/, "");
-        valor = valor.replace(/\)+/, "");
+        valor = valor.replace(/\-+/g, "");
+        valor = valor.replace(/\(+/g, "");
+        valor = valor.replace(/\.+/g, "");
+        valor = valor.replace(/\)+/g, "");
+        valor = valor.replace(/,+/g, "");
 
         return valor;
     }
@@ -34,20 +37,16 @@ export default function CadastroCliente() {
         let valor = value;
 
         if (name === "telefone") {
-            const validaTelefone = /^(\d{2})\s*(\d)?\s*(\d{4})\-?(\d{4})$/;
             valor = removeChars(valor);
 
             valor = valor.replace(validaTelefone, "($1) $2 $3-$4");
-
-            console.log(valor);
-
 
         }
 
         if (name === "cpf") {
             valor = removeChars(valor);
 
-            valor = valor.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4");
+            valor = valor.replace(validaCpf, "$1.$2.$3-$4");
 
         }
 
@@ -60,6 +59,21 @@ export default function CadastroCliente() {
     */
     async function submit(event) {
         event.preventDefault();
+
+        const cpTelefone = removeChars(clienteData.telefone);
+        const cpCpf = removeChars(clienteData.cpf);
+
+        const telefoneValido = cpTelefone.match(validaTelefone);
+        const cpfValido = cpCpf.match(validaCpf);
+
+        if(!telefoneValido) {
+            alert("Número de telefone inválido!");
+            return;
+        }
+        if(!cpfValido) {
+            alert("Número de CPF inválido!");
+            return;
+        }
 
         try {
             const response = await axios.post('http://localhost:3001/clientes/create',
