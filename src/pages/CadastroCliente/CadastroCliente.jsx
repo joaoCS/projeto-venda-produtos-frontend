@@ -18,7 +18,7 @@ export default function CadastroCliente() {
 
     function removeChars(valor) {
         valor = valor.replace(/[a-zA-Z\u\'\"\`]/g, "");// substitui tudo o que não for número
-        valor = valor.replace(/\s+/, "");
+        valor = valor.replace(/\s+/g, "");
         valor = valor.replace(/\-+/, "");
         valor = valor.replace(/\(+/, "");
         valor = valor.replace(/\)+/, "");
@@ -35,19 +35,13 @@ export default function CadastroCliente() {
 
         if (name === "telefone") {
             const validaTelefone = /^(\d{2})\s*(\d)?\s*(\d{4})\-?(\d{4})$/;
+            valor = removeChars(valor);
+
             valor = valor.replace(validaTelefone, "($1) $2 $3-$4");
-            valor = valor.replace(/[a-zA-Z\u\'\"\`]/g, "");// substitui tudo o que não for número
 
-            if (valor.length > 15) {
-                valor = removeChars(valor);
+            console.log(valor);
 
-                valor = valor.replace(validaTelefone, "($1) $2 $3-$4");
 
-                console.log(valor);
-            }
-            if (valor.length > 16) {
-                valor = valor.substring(0, valor.length - 1);
-            }
         }
 
         if (name === "cpf") {
