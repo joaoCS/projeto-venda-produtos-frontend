@@ -57,7 +57,7 @@ export default function Admin() {
     }, []);
 
     function gotoHome () {
-        navigate("/home");
+        navigate("/");
     }
 
     return (

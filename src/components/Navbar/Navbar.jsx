@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import logo from '../../img/logo1.jpg';
 import Popup from "../Popup/Popup";
 import './navbar.css';
 
@@ -106,12 +107,12 @@ const Navbar = () => {
                     Administrador <span>{username}</span>
                     {adminPopup &&
                         <div className="popup" onMouseLeave={closeAllPopups}>
-                            <Link to="/administrador">Editar dados do administrador</Link>
+                            {cookies.access_token && <Link to="/administrador">Editar dados do administrador</Link>}
                             <Link to="/cadastroAdmin">Cadastrar Administrador</Link>
                         </div>}
                 </div>&nbsp;
             </div>
-            <h1 id="logo">Vendas</h1>
+            <img id="logo" src={logo}></img>
             
             {!cookies.access_token ? <Link to="/login">Login</Link> :
                 <div className="authLinks">

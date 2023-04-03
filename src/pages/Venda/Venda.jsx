@@ -190,12 +190,18 @@ export const Venda = () => {
             <div>
                 {venda.map((v, idx) => {
                     return (<div key={idx} className="formProdutos">
-                        <strong>Nome:</strong> &nbsp;
-                        <span>{v.nome}</span>&nbsp;
-                        <strong>Preço:</strong> &nbsp;
-                        <span>R$ {v.valorVenda}</span>&nbsp;
-                        <strong>Categoria:</strong> &nbsp;
-                        <span>{v.categoria.nome}</span>  &nbsp;
+                        <span>
+                            <strong>Nome:</strong> &nbsp;
+                            <span>{v.nome}</span>&nbsp;
+                        </span>
+                        <span>
+                            <strong>Preço:</strong> &nbsp;
+                            <span>R$ {v.valorVenda}</span>&nbsp;
+                        </span>
+                        <span>
+                            <strong>Categoria:</strong> &nbsp;
+                            <span>{v.categoria.nome}</span>  &nbsp;
+                        </span>
                         <input type="hidden" id="index" name="index" value={idx} />
                         <strong>Quantidade:</strong>
                         <input type="text" size={5} id="quantidade" name={idx} onChange={setQtd} value={v.quantidade} />

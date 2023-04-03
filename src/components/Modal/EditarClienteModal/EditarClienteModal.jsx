@@ -12,18 +12,8 @@ export default function EditarClienteModal({ cliente, closeModal }) {
     const validaTelefone = /^(\d{2})\s*(\d)?\s*(\d{4})\-?(\d{4})$/;
     const validaCpf = /^(\d{3})(\d{3})(\d{3})(\d{2})$/; 
 
-    useEffect(() => {
-        console.log(cliente);
-    }, []);
-
     function removeChars(valor) {
-        valor = valor.replace(/[a-zA-Z\u\'\"\`]/g, "");// substitui tudo o que não for número
-        valor = valor.replace(/\s+/g, "");
-        valor = valor.replace(/\-+/g, "");
-        valor = valor.replace(/\(+/g, "");
-        valor = valor.replace(/\.+/g, "");
-        valor = valor.replace(/\)+/g, "");
-        valor = valor.replace(/,+/g, "");
+        valor = valor.replace(/[a-zA-Z\u\'\"\`\s+\-+\(+\.+\)+,+]/g, "");// substitui tudo o que não for número
 
         return valor;
     }

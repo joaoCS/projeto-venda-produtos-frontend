@@ -18,13 +18,7 @@ export default function CadastroCliente() {
     const validaCpf = /^(\d{3})(\d{3})(\d{3})(\d{2})$/; 
 
     function removeChars(valor) {
-        valor = valor.replace(/[a-zA-Z\u\'\"\`]/g, "");// substitui tudo o que não for número
-        valor = valor.replace(/\s+/g, "");
-        valor = valor.replace(/\-+/g, "");
-        valor = valor.replace(/\(+/g, "");
-        valor = valor.replace(/\.+/g, "");
-        valor = valor.replace(/\)+/g, "");
-        valor = valor.replace(/,+/g, "");
+        valor = valor.replace(/[a-zA-Z\u\'\"\`\s+\-+\(+\.+\)+,+]/g, "");// substitui tudo o que não for número
 
         return valor;
     }

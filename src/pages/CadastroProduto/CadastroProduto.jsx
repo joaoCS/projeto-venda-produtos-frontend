@@ -9,7 +9,7 @@ export const CadastroProduto = () => {
 
     const [cookies, setCookies] = useCookies(["access_token"]);
 
-    const [productData, setProductData] = useState({
+    let [productData, setProductData] = useState({
         nome: "",
         valorCompra: 0.0,
         valorVenda: 0.0,
@@ -35,9 +35,14 @@ export const CadastroProduto = () => {
     function handleChange(event) {
         const { name, value } = event.target;
 
-        if (name == "valorCompra" || name == "valorVenda")
+        if (name == "valorCompra" || name == "valorVenda"){
+            
+            
+        
             setProductData({ ...productData, [name]: parseFloat(value) });
-
+        
+            
+        }
         else
             setProductData({ ...productData, [name]: value });
     }
@@ -92,11 +97,11 @@ export const CadastroProduto = () => {
 
 
                 <label htmlFor="valorCompra">Valor de Compra:</label>
-                <input type="text" id="valorCompra" name="valorCompra" onChange={handleChange} />
+                <input type="text" id="valorCompra" name="valorCompra" value={productData.valorCompra} onChange={handleChange} />
 
 
                 <label htmlFor="valorVenda">Valor de Venda:</label>
-                <input type="text" id="valorVenda" name="valorVenda" onChange={handleChange} />
+                <input type="text" id="valorVenda" name="valorVenda" value={productData.valorVenda} onChange={handleChange} />
 
 
                 <label htmlFor="categoria">Categoria:</label>

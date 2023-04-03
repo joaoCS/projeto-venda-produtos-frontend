@@ -1,11 +1,16 @@
 .cadastroStruct {
-    width: fit-content;
     margin:auto;
-    display: flex;
-    flex-direction: column;
+    margin-top: 80px;
+    
+    width: fit-content;
+    height: fit-content;
+
+    border: 1px solid black;
+    padding: 20px;
 }
 
 .cadastroStruct form {
+    
     display: flex;
     flex-direction: column;
 }
