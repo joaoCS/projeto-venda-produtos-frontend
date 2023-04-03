@@ -108,10 +108,13 @@ export const Venda = () => {
 
     }
     function setQtd(event) {
-        const quantidade = event.target.value;
+        let quantidade = event.target.value;
         const index = event.target.name;
 
         let v = [...venda];
+
+        quantidade = quantidade.replace(/[a-zA-Z\u\'\"\`\s+\-+\(+\.+\)+,+]/g, "");// substitui tudo o que não for número
+    
         v[index].quantidade = quantidade;
         setVenda(v);
         vendas = v;
