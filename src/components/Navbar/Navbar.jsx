@@ -1,3 +1,6 @@
+import { useSelector, useDispatch } from "react-redux";
+import { selectUser, addUser } from "./userSlice";
+
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCookies } from 'react-cookie';
@@ -19,6 +22,11 @@ const Navbar = () => {
 
     const navigate = useNavigate();
 
+    let user = useSelector(selectUser);
+
+    const usuario = {...user};
+    const dispatch = useDispatch(); 
+
     useEffect(()=>{
         async function fetchData() {
 
@@ -30,8 +38,13 @@ const Navbar = () => {
                             userId: window.localStorage.getItem("userId")
                         },
                     });
-    
-                setUsername(response.data.username);
+                    
+                    const usernam = response.data.username;
+                    dispatch(addUser(usernam));
+
+                    
+
+                    setUsername(user.username);
             }
             catch (err) {
                 console.log(err);
@@ -39,7 +52,7 @@ const Navbar = () => {
         }
     
         fetchData();
-    }, []);
+    }, [usuario]);
 
 
     function logout() {

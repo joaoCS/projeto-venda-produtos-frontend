@@ -3,8 +3,12 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import './cadastroStruct.css';
+import { useDispatch } from "react-redux";
+import { addUser } from "./Navbar/userSlice";
 
 export const CadastroStruct = (props) => {
+
+    const dispatch = useDispatch();
 
     const [userData, setUserData] = useState({
         username: "",
@@ -37,6 +41,12 @@ export const CadastroStruct = (props) => {
 
                     setCookies("access_token", response.data.token);
                     window.localStorage.setItem("userId", response.data.userId);
+                    
+                    console.log(response.data.username);
+
+                    const { username } = response.data;
+                    dispatch(addUser(username));
+
                     navigate("/");
                 }
                 catch (err) {
