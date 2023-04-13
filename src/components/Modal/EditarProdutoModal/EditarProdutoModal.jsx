@@ -27,26 +27,38 @@ export default function EditarProdutoModal({ closeModal, produto }) {
             alert("Selecione uma categoria!");
             return;
         }
-        const response = await axios.put("http://localhost:3001/produtos/edit", productData, {
-            headers: {
-                authorization: cookies.access_token
-            }
-        });
+        try{ 
+            const response = await axios.put("http://localhost:3001/produtos/edit", productData, {
+                headers: {
+                    authorization: cookies.access_token
+                }
+            });
 
-        console.log(response.data);
+            alert(response.data.message);
+            closeModal();
+        }
+        catch (err) {
+            alert(err.response.data.message);
+        }
+    }
 
-
-        alert(response.data.message);
-
-        closeModal();
+    function removeChars(valor) {
+        valor = valor.replace(/[a-zA-Z\'\"\`\s+\-+\(+\)+]/g, "");// substitui tudo o que não for número
+        valor = valor.replace(/\,/g, ".");// onde tiver uma vírgula coloca um ponto
+        
+        return valor;
     }
 
     function handleChange(event) {
-        const { name, value } = event.target;
+        let { name, value } = event.target;
 
-        if (name == "valorCompra" || name == "valorVenda")
+        if (name == "valorCompra" || name == "valorVenda") {
+            
+            value = removeChars(value);
+            
             setProductData({ ...productData, [name]: parseFloat(value) });
-
+        
+        }
         setProductData({ ...productData, [name]: value });
     }
 
@@ -90,7 +102,7 @@ export default function EditarProdutoModal({ closeModal, produto }) {
                     <input type="text" id="valorCompra" name="valorCompra" onChange={handleChange} defaultValue={produto.valorCompra} />
 
                     <label htmlFor="valorVenda">Valor de venda:</label>
-                    <input type="number" name="valorVenda" id="valorVenda" onChange={handleChange} defaultValue={produto.valorVenda} />
+                    <input type="text" name="valorVenda" id="valorVenda" onChange={handleChange} defaultValue={produto.valorVenda} />
                     <br />
                     <label htmlFor="categoria">Categoria:</label>
                     <select name="categoria" id="categoria" onChange={handleChange} defaultValue={produto.categoria._id}>

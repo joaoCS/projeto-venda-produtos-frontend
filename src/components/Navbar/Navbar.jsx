@@ -42,8 +42,6 @@ const Navbar = () => {
                     const usernam = response.data.username;
                     dispatch(addUser(usernam));
 
-                    
-
                     setUsername(user.username);
             }
             catch (err) {

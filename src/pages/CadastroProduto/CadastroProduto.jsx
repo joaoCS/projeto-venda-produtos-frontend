@@ -31,17 +31,23 @@ export const CadastroProduto = () => {
         }
     }
 
+    function removeChars(valor) {
+        valor = valor.replace(/[a-zA-Z\'\"\`\s+\-+\(+\)+]/g, "");// substitui tudo o que não for número
+        valor = valor.replace(/\,/g, ".");// onde tiver uma vírgula coloca um ponto
+        
+        return valor;
+    }
 
     function handleChange(event) {
-        const { name, value } = event.target;
+        let { name, value } = event.target;
 
-        if (name == "valorCompra" || name == "valorVenda"){
+        if (name === "valorCompra" || name === "valorVenda"){
             
+            value = removeChars(value);
+
+            console.log(value);
             
-        
             setProductData({ ...productData, [name]: parseFloat(value) });
-        
-            
         }
         else
             setProductData({ ...productData, [name]: value });
@@ -97,11 +103,11 @@ export const CadastroProduto = () => {
 
 
                 <label htmlFor="valorCompra">Valor de Compra:</label>
-                <input type="text" id="valorCompra" name="valorCompra" value={productData.valorCompra} onChange={handleChange} />
+                <input type="text" id="valorCompra" name="valorCompra"  onChange={handleChange} />
 
 
                 <label htmlFor="valorVenda">Valor de Venda:</label>
-                <input type="text" id="valorVenda" name="valorVenda" value={productData.valorVenda} onChange={handleChange} />
+                <input type="text" id="valorVenda" name="valorVenda" onChange={handleChange} />
 
 
                 <label htmlFor="categoria">Categoria:</label>
