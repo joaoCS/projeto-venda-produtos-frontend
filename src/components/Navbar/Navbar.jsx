@@ -24,7 +24,7 @@ const Navbar = () => {
 
     let user = useSelector(selectUser);
 
-    const usuario = {...user};
+    user = {...user};
     const dispatch = useDispatch(); 
 
     useEffect(()=>{
@@ -52,7 +52,7 @@ const Navbar = () => {
         }
     
         fetchData();
-    }, [usuario]);
+    }, [user]);
 
 
     function logout() {
