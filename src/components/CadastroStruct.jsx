@@ -58,16 +58,27 @@ export const CadastroStruct = (props) => {
             else {
                 url = url + "createAdmin";
 
-                const response = await axios.post(url, {
-                    username: userData.username,
-                    email: userData.email,
-                    password: userData.password
-                });
+                let email = userData.email;
+
+                const emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+                if (!emailRegex.test(email)) {
+                    alert("Email inválido!");
+                    return;
+                }
+                
+                console.log(email.match(emailRegex));
+                console.log(email);
+                console.log(emailRegex.test(email));
+                
+                const response = await axios.post(url, userData);
                 console.log(response.data);
                 if (response.status === 403) {
                     alert("Usuário já existe!");
                     return;
                 }
+
+
 
                 alert("Administrador criado com sucesso! Faça login!");
                 navigate("/");
@@ -101,7 +112,7 @@ export const CadastroStruct = (props) => {
                     <label htmlFor="password">Senha:</label>
                     <input type="password" id="password" name="password" onChange={handleChange} />
                     <span>
-                        <button type="submit">Entrar</button>
+                        <button type="submit">{props.useType === "login" ? "Entrar" : "Cadastrar"}</button>
                     </span>
                 </form>
             

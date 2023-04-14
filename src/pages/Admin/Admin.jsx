@@ -30,6 +30,18 @@ export default function Admin() {
     async function handleSubmit(event) {
         event.preventDefault();
 
+        console.log(userData);
+
+
+        let email = userData.email;
+
+        const emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+        if (!emailRegex.test(email)) {
+            alert("Email inválido!");
+            return;
+        }
+
         try {
             const response = await axios.put('http://localhost:3001/auth/edit', userData, {
                 headers: {
