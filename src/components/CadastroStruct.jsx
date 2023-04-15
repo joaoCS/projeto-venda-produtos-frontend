@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie';
 import './cadastroStruct.css';
 import { useDispatch } from "react-redux";
 import { addUser } from "./Navbar/userSlice";
+import api from '../config/api';
 
 export const CadastroStruct = (props) => {
 
@@ -29,12 +30,10 @@ export const CadastroStruct = (props) => {
         event.preventDefault();
         try {
 
-            let url = 'http://localhost:3001/auth/';
             if (props.useType === "login") {
-                url = url + "login";
 
                 try {
-                    const response = await axios.post(url, {
+                    const response = await api.post("/auth/login", {
                         email: userData.email,
                         password: userData.password
                     });
@@ -50,14 +49,11 @@ export const CadastroStruct = (props) => {
                     navigate("/");
                 }
                 catch (err) {
-                    alert("Erro ao fazer login!", err);
+                    alert(err.response.data.message);
                 }
             }
-            else if (props.useType === "createUser")
-                url = url + "createUser";
             else {
-                url = url + "createAdmin";
-
+                
                 let email = userData.email;
 
                 const emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -67,18 +63,12 @@ export const CadastroStruct = (props) => {
                     return;
                 }
                 
-                console.log(email.match(emailRegex));
-                console.log(email);
-                console.log(emailRegex.test(email));
-                
-                const response = await axios.post(url, userData);
+                const response = await api.post("/auth/createAdmin", userData);
                 console.log(response.data);
                 if (response.status === 403) {
                     alert("Usuário já existe!");
                     return;
                 }
-
-
 
                 alert("Administrador criado com sucesso! Faça login!");
                 navigate("/");
@@ -87,7 +77,8 @@ export const CadastroStruct = (props) => {
         }
         catch (err) {
             console.log(err);
-            alert("Erro ao criar administrador!");
+
+            alert(err.response.data.message);
         }
     }
 

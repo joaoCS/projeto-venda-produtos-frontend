@@ -3,6 +3,7 @@ import axios from 'axios';
 import { AiFillEdit, AiOutlineDelete } from 'react-icons/ai';
 import EditarClienteModal from '../../components/Modal/EditarClienteModal/EditarClienteModal';
 import DeleteClienteModal from '../../components/Modal/DeleteClienteModal/DeleteClienteModal';
+import api from '../../config/api';
 
 export default function Clientes() {
 
@@ -13,7 +14,7 @@ export default function Clientes() {
 
     async function buscaClientes() {
         try {
-            const response = await axios.get('http://localhost:3001/clientes');
+            const response = await api.get('/clientes');
 
             setClientes(response.data);
         } 

@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import api from "../../../config/api";
 
 export default function DeleteCategoriaModal ({ categoria, closeModal }) {
     
@@ -8,7 +9,7 @@ export default function DeleteCategoriaModal ({ categoria, closeModal }) {
  
    async function removeCategoria() {
       try {
-         const response = await axios.delete('http://localhost:3001/categorias/delete', {
+         const response = await api.delete('/categorias/delete', {
             headers: {
                authorization: cookies.access_token
             },

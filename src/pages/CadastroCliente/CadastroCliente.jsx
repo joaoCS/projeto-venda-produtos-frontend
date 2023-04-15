@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import api from '../../config/api';
 
 export default function CadastroCliente() {
 
@@ -70,7 +71,7 @@ export default function CadastroCliente() {
         }
 
         try {
-            const response = await axios.post('http://localhost:3001/clientes/create',
+            const response = await api.post('/clientes/create',
                 clienteData,
                 {
                     headers: {

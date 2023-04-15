@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import './editarClienteModal.css';
-
+import api from "../../../config/api";
 
 export default function EditarClienteModal({ cliente, closeModal }) {
 
@@ -59,7 +59,7 @@ export default function EditarClienteModal({ cliente, closeModal }) {
 
 
         try {
-            const response = await axios.put('http://localhost:3001/clientes/edit', clienteData, {
+            const response = await api.put('/clientes/edit', clienteData, {
                 headers: {
                     authorization: cookies.access_token
                 }

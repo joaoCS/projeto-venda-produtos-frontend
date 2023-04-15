@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import api from '../../config/api';
 
 export const CadastroEmpresa = () => {
 
@@ -27,9 +28,9 @@ export const CadastroEmpresa = () => {
         console.log(companyData);
         try {
 
-            let url = 'http://localhost:3001/empresas/cadastrar';
+            let url = '/empresas/cadastrar';
 
-            const response = await axios.post(url, {
+            const response = await api.post(url, {
                 razaoSocial: companyData.razaoSocial,
                 cnpj: companyData.cnpj,
                 endereco: companyData.endereco,

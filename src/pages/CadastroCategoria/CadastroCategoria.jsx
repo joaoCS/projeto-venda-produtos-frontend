@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
-
+import api from '../../config/api';
 
 export const CadastroCategoria = () => {
 
@@ -23,9 +23,9 @@ export const CadastroCategoria = () => {
         event.preventDefault();
         try {
 
-            let url = 'http://localhost:3001/categorias/create';
+            let url = '/categorias/create';
 
-            const response = await axios.post(url, categoriaData, {
+            const response = await api.post(url, categoriaData, {
                 headers: {
                     authorization: cookies.access_token
                 }

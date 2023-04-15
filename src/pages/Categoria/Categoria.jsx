@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import EditarCategoriaModal from '../../components/Modal/EditarCategoriaModal/EditarCategoriaModal';
 import DeleteCategoriaModal from '../../components/Modal/DeleteCategoriaModal/DeleteCategoriaModal';
+import api from '../../config/api';
 
 export default function Categoria() {
     const [categorias, setCategorias] = useState([]);
@@ -14,7 +15,7 @@ export default function Categoria() {
 
     async function buscaCategorias() {
         try {
-            const response = await axios.get('http://localhost:3001/categorias');
+            const response = await api.get('/categorias');
 
             setCategorias(response.data);
 

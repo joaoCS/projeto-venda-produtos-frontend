@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import api from '../../config/api';
 
 export const CadastroProduto = () => {
 
@@ -21,7 +22,7 @@ export const CadastroProduto = () => {
 
     async function fetchCategorias() {
         try {
-            const response = await axios.get('http://localhost:3001/categorias/');
+            const response = await api.get('/categorias/');
 
             setCategorias(response.data);
 
@@ -58,9 +59,9 @@ export const CadastroProduto = () => {
 
         try {
 
-            let url = 'http://localhost:3001/produtos/create';
+            let url = '/produtos/create';
 
-            const response = await axios.post(url, productData, { headers: { authorization: cookies.access_token } });
+            const response = await api.post(url, productData, { headers: { authorization: cookies.access_token } });
             alert(response.data.message);
 
             if(window.confirm("Cadastrar novo produto?")) {

@@ -10,6 +10,8 @@ import logo from '../../img/logo1.jpg';
 import Popup from "../Popup/Popup";
 import './navbar.css';
 
+import api from "../../config/api";
+
 const Navbar = () => {
 
     const [cookies, setCookies] = useCookies(["access_token"]);
@@ -32,7 +34,7 @@ const Navbar = () => {
 
             try {
     
-                const response = await axios.get('http://localhost:3001/auth/username', {
+                const response = await api.get('/auth/username', {
                         headers: {
                             authorization: cookies.access_token,
                             userId: window.localStorage.getItem("userId")

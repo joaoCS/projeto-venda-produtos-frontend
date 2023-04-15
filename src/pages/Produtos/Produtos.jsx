@@ -4,6 +4,7 @@ import { useCookies } from 'react-cookie';
 import { AiFillEdit, AiOutlineDelete } from 'react-icons/ai';
 import EditarProdutoModal from '../../components/Modal/EditarProdutoModal/EditarProdutoModal';
 import DeleteProdutoModal from '../../components/Modal/DeleteProdutoModal/DeleteProdutoModal';
+import api from '../../config/api';
 
 export default function Produtos() {
 
@@ -17,10 +18,9 @@ export default function Produtos() {
     async function buscaProdutos() {
         try{
             
-            const response = await axios.get('http://localhost:3001/produtos', {headers:{
+            const response = await api.get('/produtos', {headers:{
                 authorization: cookies.access_token
             }});
-            
             setProdutos(response.data);
         }
         catch(err) {
@@ -73,7 +73,7 @@ export default function Produtos() {
                             </span> 
                             &nbsp;
                             <span>
-                               <strong> Categoria: </strong>{produto.categoria.nome}
+                               <strong> Categoria: </strong>{produto.categoria?.nome}
                             </span>
                             &nbsp;
                             <button onClick={(e)=>{ openEditarModal(); setModalProduto(produto) }}>Editar <AiFillEdit/></button>

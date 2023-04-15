@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import './venda.css';
+import api from '../../config/api';
 
 export const Venda = () => {
 
@@ -17,7 +18,7 @@ export const Venda = () => {
     async function buscaProdutos() {
         try {
 
-            const response = await axios.get('http://localhost:3001/produtos', {
+            const response = await api.get('/produtos', {
                 headers: {
                     authorization: cookies.access_token
                 }
@@ -89,7 +90,7 @@ export const Venda = () => {
     async function fetchClientes() {
 
         try {
-            const response = await axios.get("http://localhost:3001/clientes/");
+            const response = await api.get("/clientes/");
 
             setClientes(response.data);
         } catch (err) {
@@ -139,7 +140,7 @@ export const Venda = () => {
 
         try {
 
-            const response = await axios.post('http://localhost:3001/vendas/efetuarVenda', vendaData, {
+            const response = await api.post('/vendas/efetuarVenda', vendaData, {
                 headers: { authorization: cookies.access_token }
             });
 
@@ -181,7 +182,7 @@ export const Venda = () => {
                         </span>
                         <span>
                             <strong>Categoria:</strong> &nbsp;
-                            <span>{produto.categoria.nome}</span>
+                            <span>{produto.categoria?.nome}</span>
                         </span>
                         <input type="hidden" id="index" name="index" value={idx} />
                         <button type="submit">Adicionar</button>
@@ -203,7 +204,7 @@ export const Venda = () => {
                         </span>
                         <span>
                             <strong>Categoria:</strong> &nbsp;
-                            <span>{v.categoria.nome}</span>  &nbsp;
+                            <span>{v.categoria?.nome}</span>  &nbsp;
                         </span>
                         <input type="hidden" id="index" name="index" value={idx} />
                         <strong>Quantidade:</strong>

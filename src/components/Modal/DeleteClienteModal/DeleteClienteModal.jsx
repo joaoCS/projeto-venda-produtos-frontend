@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import './deleteClienteModal.css';
+import api from "../../../config/api";
 
 export default function DeleteClienteModal({ cliente, closeModal }) {
 
@@ -9,7 +10,7 @@ export default function DeleteClienteModal({ cliente, closeModal }) {
 
    async function removeCliente() {
       try {
-         const response = await axios.delete('http://localhost:3001/clientes/delete', {
+         const response = await api.delete('/clientes/delete', {
             headers: {
                authorization: cookies.access_token
             },

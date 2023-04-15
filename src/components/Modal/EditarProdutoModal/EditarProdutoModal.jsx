@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
 import './editarProdutoModal.css';
+import api from "../../../config/api";
 
 export default function EditarProdutoModal({ closeModal, produto }) {
 
@@ -28,7 +29,7 @@ export default function EditarProdutoModal({ closeModal, produto }) {
             return;
         }
         try{ 
-            const response = await axios.put("http://localhost:3001/produtos/edit", productData, {
+            const response = await api.put("/produtos/edit", productData, {
                 headers: {
                     authorization: cookies.access_token
                 }
@@ -65,7 +66,7 @@ export default function EditarProdutoModal({ closeModal, produto }) {
     useEffect(() => {
         async function fetchCategorias() {
             try {
-                const response = await axios.get('http://localhost:3001/categorias/');
+                const response = await api.get('/categorias/');
 
                 setCategorias(response.data);
 

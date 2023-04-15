@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
-
+import api from "../../config/api";
 
 export default function Admin() {
     
@@ -13,7 +13,7 @@ export default function Admin() {
     async function buscaAdmin() {
         try {
             const userId = window.localStorage.getItem("userId");
-            const response = await axios.get('http://localhost:3001/auth/user/' + userId, {
+            const response = await api.get('/auth/user/' + userId, {
                 headers: {
                     authorization: cookies.access_token
                 }
@@ -43,7 +43,7 @@ export default function Admin() {
         }
 
         try {
-            const response = await axios.put('http://localhost:3001/auth/edit', userData, {
+            const response = await api.put('/auth/edit', userData, {
                 headers: {
                     authorization: cookies.access_token
                 }

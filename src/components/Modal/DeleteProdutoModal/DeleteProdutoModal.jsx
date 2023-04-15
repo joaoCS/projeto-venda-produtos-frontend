@@ -3,13 +3,15 @@ import './deleteProdutoModal.css';
 import axios from "axios";
 import { useCookies } from "react-cookie";
 
+import api from "../../../config/api";
+
 export default function DeleteProdutoModal({ produto, closeModal }) {
 
     const [cookies, setCookies] = useCookies(["access_token"]);
 
     async function deleteProduct(event) {
         try {
-            const response = await axios.delete("http://localhost:3001/produtos/delete",
+            const response = await api.delete("/produtos/delete",
                 {
                     headers: {
                         authorization: cookies.access_token

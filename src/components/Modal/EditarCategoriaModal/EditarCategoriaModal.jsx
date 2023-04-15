@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
+import api from '../../../config/api';
+
 export default function EditarCategoriaModal({ categoria, closeModal }) {
 
     let [categoriaData, setCategoriaData] = useState(categoria);
@@ -11,7 +13,7 @@ export default function EditarCategoriaModal({ categoria, closeModal }) {
     async function handleSubmit(event) {
         event.preventDefault();
         try {
-            const response = await axios.put('http://localhost:3001/categorias/edit', categoriaData, {
+            const response = await api.put('/categorias/edit', categoriaData, {
                 headers: {
                     authorization: cookies.access_token
                 }
