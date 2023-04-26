@@ -17,4 +17,10 @@
 
 .cadastroStruct form span {
     padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cadastroStruct form span a {
+    color: rgb(81, 172, 247);
 }

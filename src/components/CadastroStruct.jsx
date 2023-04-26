@@ -6,6 +6,7 @@ import './cadastroStruct.css';
 import { useDispatch } from "react-redux";
 import { addUser } from "./Navbar/userSlice";
 import api from '../config/api';
+import { Link } from 'react-router-dom';
 
 export const CadastroStruct = (props) => {
 
@@ -104,9 +105,9 @@ export const CadastroStruct = (props) => {
                     <input type="password" id="password" name="password" onChange={handleChange} />
                     <span>
                         <button type="submit">{props.useType === "login" ? "Entrar" : "Cadastrar"}</button>
+                        <Link to="/reset-password">Esqueci a senha</Link>
                     </span>
                 </form>
-            
         </div>
     );
 }

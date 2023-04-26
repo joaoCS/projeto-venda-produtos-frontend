@@ -17,6 +17,7 @@ import Clientes from './pages/Clientes/Clientes';
 import Categoria from './pages/Categoria/Categoria';
 import Empresas from './pages/Empresas/Empresas';
 import Admin from './pages/Admin/Admin';
+import ResetPassword from './pages/ResetPassword/ResetPassword';
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
         <Route path="/categorias" element={<Categoria/>}/>
         <Route path="/empresas" element={<Empresas/>}/>
         <Route path="/administrador" element={<Admin/>}/>
-
+        <Route path="/reset-password" element={<ResetPassword/>}/>
       </Routes>
     </BrowserRouter>
   );
