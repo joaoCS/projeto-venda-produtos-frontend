@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import api from "../../config/api.js";
 
+import "./resetPassword.css";
+
 export default function ResetPassword() {
     
     const [email, setEmail] = useState("");
@@ -13,14 +15,14 @@ export default function ResetPassword() {
         try {
             const response = await api.post("/auth/forgot-password", { email });
 
-            console.log(response);
+            alert(response.data.message);
         } catch (err) {
-            console.log(err)
+            alert(err.response.data.message);
         }
     }
     
     return(
-        <div>
+        <div className="resetPass">
             <h1>Redefinir senha</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email:</label>

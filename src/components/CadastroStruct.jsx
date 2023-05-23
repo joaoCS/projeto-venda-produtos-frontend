@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { addUser } from "./Navbar/userSlice";
 import api from '../config/api';
 import { Link } from 'react-router-dom';
-
+ 
 export const CadastroStruct = (props) => {
 
     const dispatch = useDispatch();

@@ -16,7 +16,6 @@ const userSlice = createSlice({
 
 export const selectUser = (state) => {
      
-    console.log(state.user);
      return state.user;
 };
 
