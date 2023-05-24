@@ -1,11 +1,13 @@
 import React from 'react';
-import logo from '../../img/home-logo.jpg';
 import './home.css';
+import { useCookies } from 'react-cookie';
 
 export const Home = () => {
+    const [cookies, setCookies] = useCookies(["access_token"]);
     return (
-        <div >
-            <img className='home-logo' src={logo} alt="" />
+        <div className="vendas">
+            Vendas
+            {!cookies.access_token && <h3>Cadastre-se para usar</h3>}
         </div>
     );
 }

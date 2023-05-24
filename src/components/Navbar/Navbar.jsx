@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import logo from '../../img/logo1.jpg';
 import Popup from "../Popup/Popup";
 import './navbar.css';
 
@@ -125,7 +124,9 @@ const Navbar = () => {
                         </div>}
                 </div>&nbsp;
             </div>
-            <img id="logo" src={logo}></img>
+            <div className="logo">
+                Vendas
+            </div>
             
             {!cookies.access_token ? <Link to="/login">Login</Link> :
                 <div className="authLinks">
